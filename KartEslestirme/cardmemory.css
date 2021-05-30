@@ -1,0 +1,347 @@
+h1, h2, h3, h4, h5, h6, p {
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  color: #366d6e; }
+button {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: white !important; }
+body, .row {
+  margin-left: 0;
+  margin-right: 0; }
+.col-sm-3{
+  -ms-flex:0 0 16%;
+  flex:0 0 16%;
+  max-width:16%}
+/*----------------------------------- Gosterge Paneli -----------------------------------*/
+.dashboard {
+  background-color: #5DB7E7;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.22);
+  padding: 0; }
+.dashboard-bolum {
+  width: 300px;
+  margin: 16px;
+  padding: 16px 0;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.22); }
+.dashboard-kutu {
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 8px; }
+.secenek button,.secenek img {
+  height: 80px;
+  width: 80px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+.resimStyle {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center; }
+/* Oyuncu Resmi */
+#kResim {
+  width: 120px;
+  height: 120px;
+  margin: 0.3rem;
+  position: relative;
+  display: inline-block;
+  background-size: contain; }
+/* Yildiz Ikonu */
+.star {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+.win-star {
+  color: gold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+.empty-star {
+  color: #e0e0e0;
+  opacity: 0.3;
+  text-shadow: 0px 1px 1px #4d4d4d; }
+.stars .star {
+  font-size: 24px; }
+.fa-2x.fa-star {
+  color: #ffe933; }
+/* Butonlar */
+.dashboard-btn {
+  margin: 0.3rem; }
+.btn, #avatar-radio {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 8px;
+  border: 3px solid #366d6e; }
+/* Kullanici Kontrol Butonlari */
+.circle-btn {
+  height: 80px;
+  width: 80px;
+  border: 4.5px solid #366d6e;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+.circle-btn .fas {
+  font-size: 40px;
+  color: #366d6e; }
+/*----------------------------------- Gosterge Paneli -----------------------------------*/
+/*----------------------------------- Oyun Kart Alani -----------------------------------*/
+.game-board {
+  background-color: aliceblue;
+  height: 722px;
+  padding: 0; }
+.DonusSayacı {
+  padding-top: 7px; }
+.game-board-header {
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+/* Kart Ayarlari */
+.my-card-column-kolay, .my-card-column-orta, .my-card-column-zor {
+  height: 129px;
+  padding: 0; }
+.card-container {
+  cursor: pointer;
+  width: 122px;
+  height: 122px;
+  border-radius: 9px; }
+.game-card {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 9px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.5); }
+/* Kart Donus Efektleri*/
+/* https://www.w3schools.com/howto/howto_css_flip_card.asp */
+.flip-card {
+  cursor: pointer;
+  background-color: transparent;
+  /* 3D Efekt */
+  -webkit-perspective: 1000px;
+  perspective: 1000px; }
+.flip-card-inner {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: -webkit-transform 0.8s;
+  -o-transition: transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1); }
+.flip-card.face-up .flip-card-inner {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; }
+.flip-card-back {
+  cursor: pointer;
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg); }
+.flip-card:active {
+  -webkit-transform: scale(0.97);
+  -ms-transform: scale(0.97);
+  transform: scale(0.97);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  -o-transition: transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s; }
+.disabled {
+  pointer-events: none; }
+/*----------------------------------- Oyun Kart Alani -----------------------------------*/
+/*--------------------------------------- Footer ----------------------------------------*/
+#footerTabContainer {
+  margin-top: -45px;
+  overflow: hidden;
+  z-index: 2;
+  height: 45px;
+  background-color:darkmagenta;}
+/*--------------------------------------- Footer ----------------------------------------*/
+/*--------------------------------------- Modal -----------------------------------------*/
+.modal-content {
+  background-color: transparent;
+  border: none; }
+.modal-background {
+  height: auto;
+  width: auto;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 8px; }
+.fa-2x {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+/* Kullanici Bilgi Tablosu */
+.form-check-input {
+  margin-top: 0;
+  margin-left: 0; }
+#avatar-radio {
+  height: 80px;
+  width: 80px; }
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 80px;
+  height: 80px; }
+[type=radio]:checked + img {
+  outline: 4px solid #33cccc; }
+/* Bilgi Div*/
+.info-modal-text {
+  font-size: 1.1em;
+  line-height: 0.2em; }
+.info-modal-background {
+  background-color: #ffcc33; }
+.info-box p {
+  margin-bottom: 8px;
+  line-height: 24px; }
+/* Kazanma Div*/
+.win-modal-background {
+  background-color: #ffbc00; }
+.win-stars {
+  margin-top: 16px;
+  margin-bottom: 32px; }
+/* Kisi Silme Div */
+.answer-option-btn {
+  width: 55px;
+  background-color: white;
+  font-family: "Bubblegum Sans", cursive;
+  color: #33cccc !important; 
+  width: 100px;}
+/*--------------------------------------- Modal -----------------------------------------*/
+/*------------------- Kart Arkaplan - Kullanici Resmi - Kart Resimleri ------------------*/
+.game-card-back {
+  background-image: url("img/bg.jpg");
+  border-radius: 8px; }
+.girl {
+  background-image: url("img/girl.png"); }   
+.boy {
+  background-image: url("img/boy.png"); }
+.avatar-default {
+  background-color: #e2e2e2; }
+/*-------------------Gezegenler-------------------*/
+.planet {
+  background-image: url("img/planets/planets.png");}
+.sun {
+  background-image: url("img/planets/sun.png");
+  border-radius: 8px; }
+.merkur {
+  background-image: url("img/planets/merkur.png");
+  border-radius: 8px; }
+.venus {
+  background-image: url("img/planets/venus.png");
+  border-radius: 8px; }
+.dunya {
+  background-image: url("img/planets/dunya.png");
+  border-radius: 8px; }
+.mars {
+  background-image: url("img/planets/mars.png");
+  border-radius: 8px; }
+.jupiter {
+  background-image: url("img/planets/jupiter.png");
+  border-radius: 8px; }
+.saturn {
+  background-image: url("img/planets/saturn.png");
+  border-radius: 8px; }
+.uranus {
+  background-image: url("img/planets/uranus.png");
+  border-radius: 8px; }
+.neptun {
+  background-image: url("img/planets/neptun.png");
+  border-radius: 8px; }
+.pluto {
+  background-image: url("img/planets/pluto.png");
+  border-radius: 8px; }
+.astronot {
+  background-image: url("img/planets/astronot.png");
+  border-radius: 8px; }  
+.mekik {
+  background-image: url("img/planets/mekik.png");
+  border-radius: 8px; }
+/*--------------------Isler----------------------*/
+.jobs {
+  background-image: url("img/jobs/jobs.png");}
+.mimar {
+  background-image: url("img/jobs/mimar.png");
+  border-radius: 8px; }
+.avukat {
+  background-image: url("img/jobs/avukat.png");
+  border-radius: 8px; }
+.carpenter {
+  background-image: url("img/jobs/carpenter.png");
+  border-radius: 8px; }
+.chef {
+  background-image: url("img/jobs/chef.png");
+  border-radius: 8px; }
+.computer {
+  background-image: url("img/jobs/computer.png");
+  border-radius: 8px; }
+.dentist {
+  background-image: url("img/jobs/dentist.png");
+  border-radius: 8px; }
+.doctor {
+  background-image: url("img/jobs/doctor.png");
+  border-radius: 8px; }
+.fire {
+  background-image: url("img/jobs/fire.png");
+  border-radius: 8px; }
+.mechanic {
+  background-image: url("img/jobs/mechanic.png");
+  border-radius: 8px; }
+.muzisyen {
+  background-image: url("img/jobs/muzisyen.png");
+  border-radius: 8px; }
+.pilot {
+  background-image: url("img/jobs/pilot.png");
+  border-radius: 8px; }
+.teacher {
+  background-image: url("img/jobs/teacher.png");
+  border-radius: 8px; }
+/*----------------------Deniz----------------------*/
+.ocean {
+    background-image: url("img/balik/13.png");}
+.balik1 {
+  background-image: url("img/balik/1.png");
+  border-radius: 8px; }
+.balik2 {
+  background-image: url("img/balik/2.png");
+  border-radius: 8px; }
+.balik3 {
+  background-image: url("img/balik/3.png");
+  border-radius: 8px; }
+.balik4 {
+  background-image: url("img/balik/4.png");
+  border-radius: 8px; }
+.balik5 {
+  background-image: url("img/balik/5.png");
+  border-radius: 8px; }
+.balik6 {
+  background-image: url("img/balik/6.png");
+  border-radius: 8px; }
+.balik7 {
+  background-image: url("img/balik/7.png");
+  border-radius: 8px; }
+.balik8 {
+  background-image: url("img/balik/8.png");
+  border-radius: 8px; }
+.balik9 {
+  background-image: url("img/balik/9.png");
+  border-radius: 8px; }
+.balik10 {
+  background-image: url("img/balik/10.png");
+  border-radius: 8px; }
+.balik11 {
+  background-image: url("img/balik/11.png");
+  border-radius: 8px; }
+.balik12 {
+  background-image: url("img/balik/12.png");
+  border-radius: 8px; }
+/*------------------- Kart Arkaplan - Kullanici Resmi - Kart Resimleri ------------------*/
+
+ 

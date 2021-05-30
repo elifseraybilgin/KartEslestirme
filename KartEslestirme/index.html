@@ -1,0 +1,545 @@
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="cardmemory.css" type="text/css" />
+    <title>Kart Eşleştirme Oyunu</title>    
+</head>
+
+<body>
+    <div id="OyunAlani" style="display:flex;flex-direction: column;">
+         <!--Oyun Alani-->
+         <div class="row">
+            <!--Gosterge Paneli-->
+            <div class="col-3 dashboard">
+                <!--Kullanici Bilgi-->
+                <div class="row dashboard-bolum dashboard-kutu mx-auto">
+                    <!--Kullanici Adi-->
+                    <div class="col-12">
+                        <h4 class="username">Name</h4>
+                    </div>
+                    <!--Kullanici Resmi-->
+                    <div class="col-12 text-center">                       
+                        <figure id="kResim" class="resimStyle avatar-default dashboard-kutu show-modal"></figure>
+                    </div>
+                    <!--Kullanici Yildiz Skor-->
+                    <div class="col-12 text-center">
+                        <h6 id="dashboard-high-score-text">Zor Mod Skor</h6>
+                        <div id="starsDisplay" class="stars" title="Score out of 5 stars">
+                            <i class="dashboard-score-star star fas fa-star empty-star" title="no star"></i>
+                            <i class="dashboard-score-star star fas fa-star empty-star" title="no star"></i>
+                            <i class="dashboard-score-star star fas fa-star empty-star" title="no star"></i>
+                            <i class="dashboard-score-star star fas fa-star empty-star" title="no star"></i>
+                            <i class="dashboard-score-star star fas fa-star empty-star" title="no star"></i>
+                        </div>
+                        <br>
+                        <h5 class="Puan"><b>Puan: 0</b></h5>
+                    </div>
+                </div>
+                <!-- Level Secimi -->
+                <div class="row dashboard-bolum dashboard-kutu mx-auto">
+                    <!--Zorluk Secimi-->
+                    <div class="col-12 secenek px-1 text-center">
+                        <button id="kolayButton" type="button" class="dashboard-btn btn btn-success">Kolay</button>
+                        <button id="ortaButton" type="button" class="dashboard-btn btn btn-warning">Orta</button>
+                        <button id="zorButton" type="button" class="dashboard-btn btn btn-danger">Zor</button>                             
+                    </div>
+                    <!--Kart Secimi-->
+                    <div class="col-12 secenek px-1 text-center">
+                        <button type="button" class="dashboard-btn btn resimStyle planet"></button>
+                        <button type="button" class="dashboard-btn btn resimStyle jobs"></button>
+                        <button type="button" class="dashboard-btn btn resimStyle ocean"></button>    
+                        <div class="row">
+                            <h6 class="col-4">Gezegen</h6>
+                            <h6 class="col-4">Isler</h6>
+                            <h6 class="col-4">Baliklar</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kullanici Kontrol -->
+                <div class="row">
+                    <div class="col-12 secenek text-center">
+                        <button type="button" id="deleteDataModal" class="dashboard-btn btn btn-light circle-btn danger-btn" data-toggle="modal" data-target="#userModal"  style="height: 60px; width: 60px;"> 
+                            <i class="fas fa-trash-alt" style="font-size: xx-large;"></i>
+                        </button>
+                        <button type="button" class="dashboard-btn btn btn-light circle-btn info-btn" id="info" data-toggle="modal" data-target="#infoModal" style="height: 60px; width: 60px;"> 
+                            <i class="fas fa-question" style="font-size: xx-large;"></i>
+                        </button>
+                        <button type="button" id="muteButton" class="dashboard-btn btn btn-light circle-btn mute-btn" style="height: 60px; width: 60px;">
+                            <i class="fas fa-volume-mute" style="font-size: xx-large;"></i> 
+                        </button>
+                        <button type="button" class="dashboard-btn btn btn-light circle-btn reset-btn" style="height: 60px; width: 60px;"> 
+                            <i class="fas fa-undo-alt" style="font-size: xx-large;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!--Gosterge Paneli-->
+
+            <!--Oyun Sutunu-->
+            <div class="col-9 game-board" >
+                <!--Oyun Baslik Zaman Donus Bilgileri-->
+                <div class="row game-board-header">
+                    <header class="col-8" style="margin-top: 1.5%;">
+                        <h1 style="color: darkmagenta;"><b>Kart Eşleştirme Oyunu</b></h1>
+                    </header>
+                    <!-- Donus Zaman Bilgileri -->
+                    <div class="col-2 " style="margin-top: 1.5%;">
+                        <h5 class="DonusSayacı">Dönüş Sayısı: 0</h5>
+                    </div>
+                    <div class="col-2 " style="margin-top: 2%;">
+                        <h5 style="color: darkred;">Süre: <span class='Sure'>02:00</span></h5>                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 kartBilgi" style="text-align: center;height: 30px; margin-top: 1%;font-size: x-large;">
+                        <h5></h5>
+                    </div>
+                </div>   
+
+                <!-- Oyun Kart Kismi -->
+                <div class="p-md-4" style="padding-top: 0.5rem!important;">
+                    <div class="row justify-content-center">
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-kolay visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-sm-3 my-card-column-orta visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-orta visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-orta visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-orta visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-orta visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-orta visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-4 col-sm-3 my-card-column-zor visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-zor visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-zor visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-zor visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-zor visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-3 my-card-column-zor visible">
+                            <div class="flip-card card-container mx-auto face-down">
+                                <div class="flip-card-inner">
+                                    <figure class="flip-card-front game-card game-card-back"></figure>
+                                    <figure class="flip-card-back game-card dummyclass"></figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        
+        <!-- FOOTER -->
+        <div id="footerTabContainer" style="color: white;text-align: center;">
+            <footer class="row ">
+                <div class="col-12 col-md-4 py-sm-2">
+                    <b>Kart Eşleştirme</b>
+                </div>
+                <div class="col-12 col-md-4 py-sm-2">
+                    <b>Elif Seray BİLGİN</b>
+                </div>
+                <div class="col-12 col-md-4 py-sm-2">
+                    <a href="https://github.com/elifseraybilgin" target="_blank">
+                        <i style="color: white;" class="fab fa-github-alt fa-lg fa-2x githubBuyut"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Kullanici Bilgi Tablosu -->
+    <div class="modal fade" id="kullaniciBilgiModal" tabindex="-1" role="dialog" aria-labelledby="kullaniciBilgiModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="col-12 modal-background resimStyle info-modal-background pb-2 mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12" style="padding-top: 16px;">
+                            <h2 style="text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); font-size:35px; color: rgb(126, 83, 126);">Kullanıcı İsminizi Giriniz</h2>
+                        </div>
+                        <div class="col-12 text-center">
+                            <form class="userInfoModalForm">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" name="username" id="username" maxlength="15" aria-label="Type your name here" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" >
+                                        <h2 style="text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); font-size:30px; color: rgb(126, 83, 126);">Resminizi Seçiniz</h2>
+                                    </div>
+                                </div>
+                                <div class="row dashboard-kutu info-box py-1 my-2">
+                                    <label class="col-5 text-right secenek my-2">
+                                        <input class="form-check-input" type="radio" name="avatarRadios" id="avatarRadios1" value="girl" required>
+                                        <img src="img/girl.png" class="radio resimStyle girl">
+                                    </label>
+                                    <label class="col-6 text-center secenek my-2">
+                                        <input class="form-check-input" type="radio" name="avatarRadios" id="avatarRadios2" value="boy" required>
+                                        <img src="img/boy.png" class="radio resimStyle boy">
+                                    </label>
+                                </div>
+                                <button id="kullanici-bilgi-submit-button" class="btn btn-light circle-btn tick-btn" aria-label="Submit Button"> 
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <!-- Kisi Silme Uyari Panel -->
+    <div class="modal fade" id="kisiKontrolModal" tabindex="-1" role="dialog" aria-labelledby="kisiKontrolModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="col-12 modal-background resimStyle info-modal-background pb-2">
+                    <div class="row justify-content-center" style="padding-bottom: 16px;">
+                        <div class="col-12" style="padding-top: 16px;">
+                            <h2 style="font-weight: bold;">Profilini Sil!</h2>
+                            <p style="font-size: 25px;font-weight: 400;"> Profilini Silmek İstersen Profilin ve Bütün Yüksek Skorların Sıfırlanacaktır.</p>
+                        </div>
+                        <div class="col-12">
+                            <div class="row justify-content-center dashboard-kutu py-2">
+                                <div class="col-12">
+                                    <h5 style="color: #33cccc">Bunu Onaylıyor Musunuz?</h5>
+                                </div>
+                                <div class="py-1" style="  margin: 0.3rem; text-align: center;">
+                                    <button id="confirmResetData" type="button" class="btn answer-option-btn">Evet</button>
+                                </div>
+                                <div class="py-1" style="  margin: 0.3rem; text-align: center;">
+                                    <button type="button" class="btn answer-option-btn" data-dismiss="modal">Hayır</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+
+    <!-- BILGI MODAL -->
+    <div class="modal fade" id="infoModal" class="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="col-12 resimStyle modal-background info-modal-background pb-2 mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12" style="padding-top: 16px;">
+                            <h2 style="text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); font-size:35px; color: rgb(126, 83, 126);">Kart Eşleştirme Oyunu Nasıl Oynanılır?</h2>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                            <div class="dashboard-kutu info-box m-2 py-2">
+                                <p class="info-modal-text">1. Eşleşen çiftleri bulmak için iki kart çevirin.</p>
+                                <p class="info-modal-text">2. Her doğru çift için 100 puan kazanırsınız.</p>
+                                <p class="info-modal-text">3. Her yanlış çift için 20 puan kaybedersiniz.</p>
+                                <p class="info-modal-text">4. Tüm çiftler bulunduğunda oyunu kazanırsınız.</p>
+                                <p class="info-modal-text">5. Kazanmak için ne kadar çabuk bulursanız, puanınız o kadar yüksek olur.</p>
+                                <p class="info-modal-text">6. Level ve Kategori için ilgili butonlara tıklayınız.</p>
+                                <p class="info-modal-text">7. Oyun süreniz 2 dakikadır.</p>
+                            </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="button" class="btn btn-light circle-btn tick-btn" id="infobtn" data-dismiss="modal" aria-label="Close button"> 
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KAZANMA MODAL -->
+    <div class="modal fade" id="kazanmaModal" tabindex="-1" role="dialog" aria-labelledby="kazanmaModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="col-12 modal-background resimStyle win-modal-background pb-2 mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12" style="padding-top: 16px;">
+                            <h2>Tebrikler</h2>
+                            <br>
+                            <h3 style="color: darkmagenta;">KAZANDIN</h3> 
+                        </div>
+                        <div class="col-12 text-center">
+                            <img src="img/star.png" style=" width: 120px;height: 120px;">
+                        </div>
+                        <div class="col-12 text-center">
+                            <br>
+                            <h3 class="Puan"><b>Puan: 0</b></h3>
+                        </div>
+                        <div class="col-12 text-center">
+                            <div id="starsWinModal" class="stars win-stars" title="Score out of 5 stars">
+                                <i class="score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="score-star star fas fa-star empty-star" title="no star"></i>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button id="win-modal-close-btn" type="button" class="btn btn-light circle-btn tick-btn" aria-label="Close button"> 
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YUKSEK SKOR MODAL -->
+    <div class="modal fade" id="YeniYuksekSkorModal" tabindex="-1" role="dialog" aria-labelledby="YeniYuksekSkorModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="col-12 modal-background resimStyle win-modal-background pb-2 mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12" style="padding-top: 16px;">
+                            <h2>En Yüksek Skor</h2>
+                        </div>
+                        <div class="col-12 text-center">
+                            <img src="img/star.png" style=" width: 120px;height: 120px;">
+                        </div>
+                        <div class="col-12 text-center">
+                            <br>
+                            <h3 class="Puan"><b>Puan: 0</b></h3>
+                        </div>
+                        <div class="col-12 text-center">
+                            <div id="starsHighScoreModal" class="stars win-stars" title="score out of 5 stars">
+                                <i class="win-modal-score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="win-modal-score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="win-modal-score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="win-modal-score-star star fas fa-star empty-star" title="no star"></i>
+                                <i class="win-modal-score-star star fas fa-star empty-star" title="no star"></i>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button id="high-score-modal-close-btn" type="button" class="btn btn-light circle-btn tick-btn" data-dismiss="modal" aria-label="Close button"> 
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+
+    <!-- SURE BITIM MODAL -->
+    <div class="modal fade" id="finishModal" tabindex="-1" role="dialog" aria-labelledby="finishModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <section class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 resimStyle modal-background info-modal-background pb-2 mb-3">
+                                <div class="col-12 text-center">
+                                    <br>
+                                    <h2>SÜRENİZ DOLDU!</h2>
+                                    <br>
+                                    <h4>Süre: <b style="color: darkred;">02:00</b></h4>
+                                    <br>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="button" class="btn btn-light circle-btn tick-btn reset-btn" data-dismiss="modal" aria-label="Close button"> 
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SES DOSYALARI -->
+    <audio id="buttonClickAudio" src="audio/button.mp3"></audio>
+    <audio id="applauseAudio" src="audio/applause.mp3"></audio>
+    <audio id="cardFlipAudio" src="audio/card-flip.wav"></audio>
+    <audio id="correctBingAudio" src="audio/correct.mp3"></audio>
+    <audio id="wrongBingAudio" src="audio/wrong.mp3"></audio>
+    <audio id="winAudio" src="audio/win.mp3"></audio>
+
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="cardmemory.js"></script>
+
+</body>
+</html>
